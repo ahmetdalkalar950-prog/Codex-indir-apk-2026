@@ -3,119 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Codex Executor - Official Download (Hacker Edition)</title>
+    <title>Codex Terminal v2.713</title>
     <style>
+        /* Matrix/Hacker Teması Ayarları */
         body { 
             background-color: #000; 
-            color: #00ff00; /* Neon Yeşil Yazı */
-            font-family: 'Courier New', Courier, monospace; /* Terminal Tipi Yazı */
+            color: #00ff00; 
+            font-family: 'Courier New', Courier, monospace; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
             height: 100vh; 
-            margin: 0; 
-            overflow: hidden; 
-            position: relative;
+            margin: 0;
+            background-image: radial-gradient(circle, #001a00 0%, #000 80%);
         }
 
-        /* Matrix Arka Plan Efekti */
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: linear-gradient(0deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(0, 255, 0, 0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            opacity: 0.2;
-            z-index: -1;
-        }
-
-        .container { 
-            text-align: center; 
-            background: rgba(0, 0, 0, 0.8); /* Şeffaf Siyah Kutu */
-            padding: 30px; 
-            border-radius: 10px; 
-            border: 2px solid #00ff00; /* Yeşil Kenarlık */
+        .terminal-box { 
             width: 90%; 
-            max-width: 400px; 
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5); /* Yeşil Işıma */
+            max-width: 450px; 
+            background: rgba(0, 0, 0, 0.9); 
+            border: 2px solid #00ff00; 
+            padding: 25px; 
+            border-radius: 5px; 
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
             position: relative;
         }
 
-        /* Terminal Başlığı */
-        .container::before {
-            content: "C:\>_ CODEX_EXECUTOR_DOWNLOAD";
-            position: absolute;
-            top: -25px; left: 10px;
-            color: #00ff00;
-            font-size: 14px;
-            font-weight: bold;
-        }
+        /* Yanıp Sönen İmleç Efekti */
+        .cursor { display: inline-block; width: 10px; height: 18px; background: #00ff00; animation: blink 0.8s infinite; }
+        @keyframes blink { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
 
-        h1 { color: #00ff00; margin-bottom: 5px; font-size: 24px; text-transform: uppercase; letter-spacing: 2px; }
-        p { color: #88ff88; font-size: 14px; margin-top: 0; }
-
-        .loader { 
-            border: 4px solid #333; 
-            border-top: 4px solid #00ff00; /* Yeşil Yükleme Çubuğu */
-            border-radius: 50%; 
-            width: 40px; 
-            height: 40px; 
-            animation: spin 1s linear infinite; 
-            margin: 20px auto; 
-            display: none; 
-        }
-
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        h1 { font-size: 20px; border-bottom: 1px solid #00ff00; padding-bottom: 10px; text-shadow: 0 0 10px #00ff00; }
 
         .btn { 
-            background-color: black; 
+            background: none; 
             color: #00ff00; 
             border: 2px solid #00ff00; 
-            padding: 15px 30px; 
+            padding: 15px; 
+            width: 100%; 
             font-size: 18px; 
             font-weight: bold; 
-            border-radius: 5px; 
             cursor: pointer; 
-            transition: 0.3s; 
-            width: 100%; 
-            margin-top: 20px; 
-            text-decoration: none; 
-            display: inline-block; 
+            margin-top: 20px;
             text-transform: uppercase;
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            transition: 0.3s;
         }
 
         .btn:hover { 
-            background-color: #00ff00; 
-            color: black; 
-            transform: scale(1.05); 
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
+            background: #00ff00; 
+            color: #000; 
+            box-shadow: 0 0 20px #00ff00;
         }
 
-        .info { 
-            background: rgba(0, 255, 0, 0.05); 
-            padding: 15px; 
-            border-radius: 5px; 
-            font-size: 14px; 
-            text-align: left; 
-            margin-top: 20px; 
-            border-left: 4px solid #00ff00; 
-            border-right: 4px solid #00ff00;
-            color: #88ff88;
-        }
-        
-        #status { margin-top: 15px; font-weight: bold; color: #ccffcc; font-size: 14px; text-transform: lowercase; }
-
+        .loader-bar { width: 0%; height: 5px; background: #00ff00; margin-top: 15px; transition: width 0.5s; }
+        #status-msg { font-size: 14px; margin-top: 10px; color: #88ff88; }
     </style>
 </head>
 <body>
 
-<div class="container" id="mainBox">
-    <h1>CODEX SYSTEM v2.713</h1>
-    <p>Official Download Terminal [STATUS: SECURE]</p>
-    
-    <div class="info">
-        <b>[C:\>_ KURULUM_TALIM
-            
+<div class="terminal-box">
+    <h1>C:\SYSTEM\CODEX_V2.713 >_<span class="cursor"></span></h1>
+    <p>> root@official: setup_download.exe</p>
+    <p>> [INFO] Server: Secure</p>
+    <p>> [INFO] Status: Ready</p>
+
+    <div id="loader-container" style="display:none;">
+        <div class="loader-bar" id="myBar"></div>
+        <p id="status-msg">Initalizing...</p>
+    </div>
+
+    <button class="btn" id="dlBtn" onclick="hackerDownload()">[ DOSYAYI İNDİR ]</button>
+</div>
+
+<script>
+    function hackerDownload() {
+        const btn = document.getElementById('dlBtn');
+        const loader = document.getElementById('loader-container');
+        const bar = document.getElementById('myBar');
+        const msg = document.getElementById('status-msg');
+
+        btn.style.display = 'none';
+        loader.style.display = 'block';
+
+        let width = 0;
+        let interval = setInterval(() => {
+            if (width >= 100) {
+                clearInterval(interval);
+                msg.innerHTML = "REDIRECTING TO SOURCE...";
+                setTimeout(() => {
+                    // GOFILE LİNKİN BURAYA GELECEK
+                    window.location.href = "https://gofile.io/d/a3kFnT";
+                }, 1000);
+            } else {
+                width += 10; 
+                bar.style.width = width + '%';
+                if(width == 30) msg.innerHTML = "Bypassing firewalls...";
+                if(width == 60) msg.innerHTML = "Fetching secure link...";
+                if(width == 90) msg.innerHTML = "Success! Starting...";
+            }
+        }, 400);
+    }
+</script>
+
+</body>
+</html>
